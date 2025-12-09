@@ -66,8 +66,55 @@ Remember: You ARE Michael Miller. Speak in first person. Be helpful and conversa
     return NextResponse.json({ 
       message: responseMessage 
     })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Groq API error:', error)
+    
+    // Handle rate limiting specifically
+    if (error?.status === 429 || error?.message?.includes('rate limit')) {
+      // Try to extract retry time from error response
+      let retryMessage = "I've hit my rate limit for now. Please wait a moment and try again."
+      
+      // Check for retry-after header or reset time in error
+      const retryAfter = error?.headers?.['retry-after'] || 
+                         error?.response?.headers?.['retry-after'] ||
+                         error?.error?.headers?.['retry-after']
+      
+      const rateLimitReset = error?.headers?.['x-ratelimit-reset'] ||
+                            error?.response?.headers?.['x-ratelimit-reset'] ||
+                            error?.error?.headers?.['x-ratelimit-reset']
+      
+      if (retryAfter) {
+        const seconds = parseInt(retryAfter)
+        if (!isNaN(seconds)) {
+          if (seconds < 60) {
+            retryMessage = `I've hit my rate limit. Please wait about ${seconds} seconds and try again.`
+          } else {
+            const minutes = Math.ceil(seconds / 60)
+            retryMessage = `I've hit my rate limit. Please wait about ${minutes} minute${minutes > 1 ? 's' : ''} and try again.`
+          }
+        }
+      } else if (rateLimitReset) {
+        const resetTime = parseInt(rateLimitReset)
+        if (!isNaN(resetTime)) {
+          const now = Math.floor(Date.now() / 1000)
+          const waitSeconds = Math.max(0, resetTime - now)
+          
+          if (waitSeconds < 60) {
+            retryMessage = `I've hit my rate limit. Please wait about ${waitSeconds} seconds and try again.`
+          } else {
+            const minutes = Math.ceil(waitSeconds / 60)
+            retryMessage = `I've hit my rate limit. Please wait about ${minutes} minute${minutes > 1 ? 's' : ''} and try again.`
+          }
+        }
+      }
+      
+      return NextResponse.json(
+        { message: retryMessage },
+        { status: 200 } // Return 200 so frontend displays the message normally
+      )
+    }
+    
+    // Generic error handling
     return NextResponse.json(
       { error: 'Failed to get response from AI' },
       { status: 500 }

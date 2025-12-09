@@ -165,7 +165,8 @@ export default function Home() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to get response')
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || 'Failed to get response')
       }
 
       const data = await response.json()
