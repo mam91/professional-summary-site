@@ -222,7 +222,7 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen">
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto bg-[#161616]">
+      <div className="flex-1 overflow-y-auto bg-[#161616] pb-32 sm:pb-0">
         <div className="w-full sm:max-w-4xl sm:mx-auto">
           {messages.map((message, index) => (
             <ChatMessage
@@ -238,8 +238,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Input Area */}
-      <div className="bg-[#161616] border-t border-gray-900 p-3 sm:p-4 relative">
+      {/* Input Area - Fixed on mobile, normal on desktop */}
+      <div className="fixed sm:relative bottom-0 left-0 right-0 bg-[#161616] border-t border-gray-900 p-3 sm:p-4">
         <form onSubmit={handleSubmit} className="w-full sm:max-w-3xl sm:mx-auto">
           <div className="relative flex items-center bg-[#1f1f1f] rounded-lg shadow-lg border border-gray-800">
             <textarea
@@ -282,13 +282,9 @@ export default function Home() {
               </svg>
             </button>
           </div>
-          <p className="text-xs text-gray-500 text-center mt-2">
-            Press Enter to send
-          </p>
-        </form>
-        
-        {/* Contact Icons - Bottom Right Corner */}
-        <div className="absolute bottom-4 right-4 flex gap-3">
+          <div className="flex items-center justify-between mt-2">
+            {/* Contact Icons */}
+            <div className="flex gap-3">
           <a 
             href={`tel:${employmentData.contact.phone}`}
             className="text-gray-400 hover:text-gray-200 transition-colors"
@@ -336,7 +332,12 @@ export default function Home() {
               <polyline points="10 9 9 9 8 9"></polyline>
             </svg>
           </a>
-        </div>
+            </div>
+            <p className="text-xs text-gray-500 text-right">
+              Press Enter to send
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   )
