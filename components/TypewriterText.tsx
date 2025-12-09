@@ -42,16 +42,19 @@ export default function TypewriterText({
       <ReactMarkdown 
         className={`prose ${isUser ? 'prose-invert' : 'prose-invert'} prose-sm max-w-none`}
         components={{
-          p: ({children}) => <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>,
-          ul: ({children}) => <ul className="list-disc ml-4 mb-2 space-y-1">{children}</ul>,
-          ol: ({children}) => <ol className="list-decimal ml-4 mb-2 space-y-1">{children}</ol>,
-          li: ({children}) => <li className="leading-relaxed">{children}</li>,
-          h1: ({children}) => <h1 className="text-xl font-bold mb-3 mt-2">{children}</h1>,
-          h2: ({children}) => <h2 className="text-lg font-bold mb-2 mt-2">{children}</h2>,
-          h3: ({children}) => <h3 className="text-base font-bold mb-2 mt-1">{children}</h3>,
-          strong: ({children}) => <strong className="font-semibold">{children}</strong>,
-          code: ({children}) => <code className={`${isUser ? 'bg-indigo-700' : 'bg-black/40'} px-1.5 py-0.5 rounded text-sm`}>{children}</code>,
-          hr: () => <hr className="my-3 border-gray-600" />,
+          p: ({children}) => <p className="mb-2 last:mb-0 leading-relaxed text-gray-100">{children}</p>,
+          ul: ({children}) => <ul className="list-disc ml-5 mb-3 space-y-1.5 text-gray-200">{children}</ul>,
+          ol: ({children}) => <ol className="list-decimal ml-5 mb-3 space-y-1.5 text-gray-200">{children}</ol>,
+          li: ({children}) => <li className="leading-relaxed pl-1">{children}</li>,
+          h1: ({children}) => <h1 className="text-2xl font-bold mb-4 mt-3 text-white border-b border-gray-700 pb-2">{children}</h1>,
+          h2: ({children}) => <h2 className="text-xl font-bold mb-3 mt-3 text-white">{children}</h2>,
+          h3: ({children}) => <h3 className="text-lg font-semibold mb-2 mt-2 text-emerald-400">{children}</h3>,
+          strong: ({children}) => <strong className="font-semibold text-white">{children}</strong>,
+          em: ({children}) => <em className="text-gray-400 not-italic">{children}</em>,
+          code: ({children}) => <code className={`${isUser ? 'bg-indigo-700' : 'bg-emerald-900/30'} text-emerald-300 px-2 py-0.5 rounded text-sm font-mono`}>{children}</code>,
+          hr: () => <hr className="my-4 border-gray-700" />,
+          a: ({href, children}) => <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">{children}</a>,
+          blockquote: ({children}) => <blockquote className="border-l-4 border-emerald-500 pl-4 italic text-gray-300 my-2">{children}</blockquote>,
         }}
       >
         {contentToShow}
