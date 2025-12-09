@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import ChatMessage from '@/components/ChatMessage'
+import TypingIndicator from '@/components/TypingIndicator'
 import employmentData from '@/employment.json'
 
 interface Message {
@@ -125,14 +126,14 @@ export default function Home() {
     }
   }, [messages, initialTypingComplete, isRestoringSession])
 
-  // Auto-scroll to bottom only when new messages are added
+  // Auto-scroll to bottom when new messages are added or during streaming
   useEffect(() => {
-    // Only scroll if the number of messages increased (new message added)
-    if (messages.length > prevMessageCountRef.current) {
+    // Scroll if number of messages increased OR if currently loading (streaming)
+    if (messages.length > prevMessageCountRef.current || isLoading) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
     prevMessageCountRef.current = messages.length
-  }, [messages])
+  }, [messages, isLoading])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -150,8 +151,8 @@ export default function Home() {
     setIsLoading(true)
 
     try {
-      // Call API (using Groq - free!)
-      const response = await fetch('/api/chat-groq', {
+      // Call API (using Anthropic Claude with streaming)
+      const response = await fetch('/api/chat-claude', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -169,17 +170,66 @@ export default function Home() {
         throw new Error(errorData.error || 'Failed to get response')
       }
 
-      const data = await response.json()
+      // Handle streaming response
+      const reader = response.body?.getReader()
+      const decoder = new TextDecoder()
+      let accumulatedContent = ''
       
-      // Add assistant response with typing animation
+      // Add empty assistant message that we'll update as we stream
+      const messageIndex = newMessages.length
       setMessages([
         ...newMessages,
         { 
           role: 'assistant', 
-          content: data.message,
-          isTyping: true
+          content: '',
+          isTyping: false // Don't use typewriter effect for streaming
         }
       ])
+
+      if (reader) {
+        try {
+          while (true) {
+            const { done, value } = await reader.read()
+            if (done) break
+
+            const chunk = decoder.decode(value, { stream: true })
+            const lines = chunk.split('\n')
+
+            for (const line of lines) {
+              if (line.startsWith('data: ')) {
+                const data = line.slice(6)
+                if (data === '[DONE]') {
+                  break
+                }
+
+                try {
+                  const parsed = JSON.parse(data)
+                  
+                  if (parsed.error) {
+                    // Handle error in stream
+                    setMessages(prev => prev.map((msg, i) => 
+                      i === messageIndex ? { ...msg, content: parsed.text || 'An error occurred.' } : msg
+                    ))
+                    break
+                  }
+                  
+                  if (parsed.text) {
+                    accumulatedContent += parsed.text
+                    // Update message content in real-time
+                    setMessages(prev => prev.map((msg, i) => 
+                      i === messageIndex ? { ...msg, content: accumulatedContent } : msg
+                    ))
+                  }
+                } catch (e) {
+                  // Ignore parsing errors for incomplete chunks
+                }
+              }
+            }
+          }
+        } finally {
+          reader.releaseLock()
+        }
+      }
     } catch (error) {
       console.error('Error:', error)
       setMessages([
@@ -235,6 +285,23 @@ export default function Home() {
               onTypingComplete={() => handleTypingComplete(index)}
             />
           ))}
+          
+          {/* Typing Indicator */}
+          {isLoading && messages[messages.length - 1]?.role === 'user' && (
+            <div className="w-full px-2 sm:px-4 py-3 flex justify-start">
+              <div className="flex gap-2 sm:gap-3">
+                <img 
+                  src={employmentData.avatar} 
+                  alt={employmentData.name}
+                  className="flex-shrink-0 w-10 h-10 rounded-full object-cover border-2 border-[#10b981]"
+                />
+                <div className="rounded-2xl px-4 py-3 bg-[#2a2a2a] rounded-tl-sm flex items-center min-w-[60px]">
+                  <TypingIndicator />
+                </div>
+              </div>
+            </div>
+          )}
+          
           <div ref={messagesEndRef} />
         </div>
       </div>
