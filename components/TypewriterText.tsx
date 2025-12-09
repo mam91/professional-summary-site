@@ -59,9 +59,6 @@ export default function TypewriterText({
       >
         {contentToShow}
       </ReactMarkdown>
-      {isTyping && currentIndex < text.length && (
-        <span className="inline-block w-0.5 h-4 bg-current ml-0.5 animate-pulse align-middle" />
-      )}
     </div>
   )
 }
