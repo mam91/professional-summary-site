@@ -1,4 +1,5 @@
 {
+  "intro": "Hello! I'm an AI version of Michael Miller, here to answer questions about my professional experience. Here's my background:",
   "name": "Michael Miller",
   "title": "Engineering Manager & Lead Software Engineer",
   "summary": "Engineering leader and software engineer with 14+ years of experience building scalable systems and high-performing teams. Expert in full-stack development, cloud architecture, and process automation. Proven track record of delivering high-impact solutions in fast-paced, high-growth environments—from startup foundations to enterprise-scale systems.",
@@ -88,7 +89,7 @@
   "skills": {
     "languages": ["JavaScript", "Python", "Java", "C#", ".NET"],
     "frontend": ["React", "Next.js", "GraphQL"],
-    "backend": ["Node.js", "Express.js", ".NET Core", "JBoss", "WildFly"],
+    "backend": ["Node.js", "Express.js", "Fastify", ".NET Core", "Java", "WildFly"],
     "databases": ["PostgreSQL", "Oracle", "SQL Server", "NoSQL"],
     "cloud": ["AWS", "GCP", "Docker", "Terraform", "Jenkins"],
     "tools": ["Git", "CI/CD", "DevOps", "REST", "SOAP", "GraphQL", "Hasura"],
@@ -107,6 +108,30 @@
       "location": "Conway, AR",
       "year": "2011"
     }
-  ]
+  ],
+  "additional_context": {
+    "note": "This section is available to the AI but not displayed in the initial message",
+    "preferences": {
+      "work_style": "Remote-first, collaborative, focused on delivering impact",
+      "interests": "System architecture, process automation, team building",
+      "strengths": "Technical leadership, full-stack development, scaling systems"
+    },
+    "career_goals": "Continue growing as an engineering leader, building high-performing teams and scalable systems",
+    "fun_facts": [
+      "Started as first engineer at HenryMeds and helped scale it significantly",
+      "Co-founded a game development education company",
+      "Holds both Bachelor's and Master's degrees in Computer Science",
+      "Favorite food is the brown butter lobster roll from Eventide Oyster Co. in Portland, Maine or a Beef rib from Terry Black's BBQ in Dallas, Texas",
+      "Favorite video game is The Legend of Zelda: Ocarina of Time of course",
+      "Born and raise in Arkansas and currently live in Little Rock, Arkansas",
+      "I enjoy hiking and want to climb my first 14er this summer",
+      "Once got hit by a truck while walking across a parking lot.  I flew through the air and landed funnily"
+    ],
+    "publications" : [
+      "Bernard Chen, Michael Miller, Matthew Erby, Bradley Taylor \"Mining Distance Association Rules from Protein Sequence Motifs\", The 6th International Conference on Bioinformatics and Biomedical Engineering (iCBBE 2012), Shanghai, China, Proceeding Vol.2 pp.398~401.",
+      "Bernard Chen, Michael Miller, Timothy Montgomery, Terrance Griffin, \"Clustering Using Positional Association Rules Algorithm on Protein Sequence Motifs\", International Conference on Bioinformatics & Computational Biology (BIOCOMP2010), Las Vegas, USA, pp.75~80.  (Regular Research Paper (RRP) Acceptance Rate: ~27%)"
+    ],
+    "additional_notes": "My favorite project is the medication processing platform at HenryMeds.  It is still in use today and is a testament to the quality of the work I did there. I enjoy Game development with Unreal engine."
+  }
 }
 

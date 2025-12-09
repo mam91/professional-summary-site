@@ -26,14 +26,14 @@ export default function ChatMessage({
       <div className={`flex gap-3 max-w-[85%] ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
         {/* Avatar */}
         {isUser ? (
-          <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-semibold bg-[#6366f1]">
+          <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white text-base font-semibold bg-[#6366f1]">
             U
           </div>
         ) : (
           <img 
             src={employmentData.avatar} 
             alt={employmentData.name}
-            className="flex-shrink-0 w-8 h-8 rounded-full object-cover border-2 border-[#10b981]"
+            className="flex-shrink-0 w-10 h-10 rounded-full object-cover border-2 border-[#10b981]"
           />
         )}
         

@@ -19,22 +19,27 @@ export default function Home() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const prevMessageCountRef = useRef(0)
+  const [isRestoringSession, setIsRestoringSession] = useState(true)
+  
+  const MAX_STORED_MESSAGES = 50 // Safe limit for localStorage
 
   // Generate initial message from employment data
+  // Note: Does not include 'additional_context' - that's only for the AI to reference
   const generateInitialMessage = () => {
-    const data = employmentData
-    let message = `# ${data.name}\n## ${data.title}\n\n${data.summary}\n\n`
+    const data = employmentData as any
+    let message = `${data.intro}\n\n`
+    message += `# ${data.name}\n## ${data.title}\n\n${data.summary}\n\n`
     
     message += `## Professional Experience\n\n`
-    data.employment.forEach((job) => {
+    data.employment.forEach((job: any) => {
       message += `### ${job.role} at ${job.company}\n`
       message += `*${job.duration}* | ${job.location}\n\n`
       message += `**Key Responsibilities:**\n`
-      job.responsibilities.forEach(resp => {
+      job.responsibilities.forEach((resp: string) => {
         message += `- ${resp}\n`
       })
       message += `\n**Notable Achievements:**\n`
-      job.achievements.forEach(ach => {
+      job.achievements.forEach((ach: string) => {
         message += `- ${ach}\n`
       })
       message += `\n**Technologies:** ${job.technologies.join(', ')}\n\n`
@@ -60,20 +65,65 @@ export default function Home() {
     return message
   }
 
-  // Load initial message on mount
+  // Load messages from session storage or generate initial message
   useEffect(() => {
-    const initialMessage = generateInitialMessage()
-    setMessages([
-      {
-        role: 'assistant',
-        content: initialMessage,
-        isTyping: true,
-        speed: 1 
+    try {
+      const savedMessages = sessionStorage.getItem('chatMessages')
+      const savedInitialComplete = sessionStorage.getItem('initialTypingComplete')
+      
+      if (savedMessages) {
+        // Restore previous session
+        const parsedMessages = JSON.parse(savedMessages)
+        // Mark all restored messages as not typing (instant load)
+        const restoredMessages = parsedMessages.map((msg: Message) => ({
+          ...msg,
+          isTyping: false
+        }))
+        setMessages(restoredMessages)
+        setInitialTypingComplete(savedInitialComplete === 'true')
+        setIsRestoringSession(false)
+      } else {
+        // First time visit - generate initial message
+        const initialMessage = generateInitialMessage()
+        setMessages([
+          {
+            role: 'assistant',
+            content: initialMessage,
+            isTyping: true,
+            speed: 1 
+          }
+        ])
+        setIsRestoringSession(false)
       }
-    ])
-    // Mark as complete immediately since there's no animation
-    setInitialTypingComplete(true)
+    } catch (error) {
+      console.error('Error loading session:', error)
+      // Fallback to initial message
+      const initialMessage = generateInitialMessage()
+      setMessages([
+        {
+          role: 'assistant',
+          content: initialMessage,
+          isTyping: true,
+          speed: 1 
+        }
+      ])
+      setIsRestoringSession(false)
+    }
   }, [])
+  
+  // Save messages to session storage whenever they change
+  useEffect(() => {
+    if (!isRestoringSession && messages.length > 0) {
+      try {
+        // Keep only the last MAX_STORED_MESSAGES
+        const messagesToStore = messages.slice(-MAX_STORED_MESSAGES)
+        sessionStorage.setItem('chatMessages', JSON.stringify(messagesToStore))
+        sessionStorage.setItem('initialTypingComplete', String(initialTypingComplete))
+      } catch (error) {
+        console.error('Error saving session:', error)
+      }
+    }
+  }, [messages, initialTypingComplete, isRestoringSession])
 
   // Auto-scroll to bottom only when new messages are added
   useEffect(() => {
@@ -148,10 +198,18 @@ export default function Home() {
     setMessages(prev => prev.map((msg, i) => 
       i === index ? { ...msg, isTyping: false } : msg
     ))
-    if (index === 0) {
+    // Mark initial typing as complete when the first message is done
+    if (!initialTypingComplete && index === 0) {
       setInitialTypingComplete(true)
       inputRef.current?.focus()
     }
+  }
+  
+  // Clear session storage (optional - can be called from UI if needed)
+  const clearSession = () => {
+    sessionStorage.removeItem('chatMessages')
+    sessionStorage.removeItem('initialTypingComplete')
+    window.location.reload()
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
