@@ -223,7 +223,7 @@ export default function Home() {
     <div className="flex flex-col h-screen">
       {/* Messages */}
       <div className="flex-1 overflow-y-auto bg-[#161616]">
-        <div className="max-w-4xl mx-auto">
+        <div className="w-full sm:max-w-4xl sm:mx-auto">
           {messages.map((message, index) => (
             <ChatMessage
               key={index}
@@ -239,8 +239,8 @@ export default function Home() {
       </div>
 
       {/* Input Area */}
-      <div className="bg-[#161616] border-t border-gray-900 p-4 relative">
-        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
+      <div className="bg-[#161616] border-t border-gray-900 p-3 sm:p-4 relative">
+        <form onSubmit={handleSubmit} className="w-full sm:max-w-3xl sm:mx-auto">
           <div className="relative flex items-center bg-[#1f1f1f] rounded-lg shadow-lg border border-gray-800">
             <textarea
               ref={inputRef}
@@ -283,7 +283,7 @@ export default function Home() {
             </button>
           </div>
           <p className="text-xs text-gray-500 text-center mt-2">
-            Press Enter to send, Shift+Enter for new line
+            Press Enter to send
           </p>
         </form>
         

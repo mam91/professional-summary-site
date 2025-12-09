@@ -22,8 +22,8 @@ export default function ChatMessage({
   const isUser = role === 'user'
   
   return (
-    <div className={`w-full px-4 py-3 ${isUser ? 'flex justify-end' : 'flex justify-start'}`}>
-      <div className={`flex gap-3 max-w-[85%] ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
+    <div className={`w-full px-2 sm:px-4 py-3 ${isUser ? 'flex justify-end' : 'flex justify-start'}`}>
+      <div className={`flex gap-2 sm:gap-3 w-full sm:max-w-[85%] ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
         {/* Avatar */}
         {isUser ? (
           <div className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white text-base font-semibold bg-[#6366f1]">
