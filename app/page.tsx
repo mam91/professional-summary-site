@@ -140,6 +140,26 @@ export default function Home() {
     if (!input.trim() || isLoading || !initialTypingComplete) return
 
     const userMessage = input.trim()
+    
+    // Check for "clear" command
+    if (userMessage.toLowerCase() === 'clear') {
+      setInput('')
+      // Clear session and reset to initial message
+      sessionStorage.removeItem('chatMessages')
+      sessionStorage.removeItem('initialTypingComplete')
+      const initialMessage = generateInitialMessage()
+      setMessages([
+        {
+          role: 'assistant',
+          content: initialMessage,
+          isTyping: true,
+          speed: 1
+        }
+      ])
+      setInitialTypingComplete(false)
+      return
+    }
+    
     setInput('')
     
     // Add user message
