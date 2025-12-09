@@ -1,0 +1,112 @@
+{
+  "name": "Michael Miller",
+  "title": "Engineering Manager & Lead Software Engineer",
+  "summary": "Engineering leader and software engineer with 14+ years of experience building scalable systems and high-performing teams. Expert in full-stack development, cloud architecture, and process automation. Proven track record of delivering high-impact solutions in fast-paced, high-growth environments—from startup foundations to enterprise-scale systems.",
+  "avatar": "/avatar.png",
+  "contact": {
+    "email": "mmmiller3.ar@gmail.com",
+    "github": "https://github.com/mam91"
+  },
+  "employment": [
+    {
+      "company": "HenryMeds",
+      "role": "Engineering Manager",
+      "duration": "08/2023 - Present",
+      "location": "Remote",
+      "responsibilities": [
+        "Led multiple engineering teams within Internal Applications, delivering enterprise systems that power operational workflows",
+        "Built and scaled the Process Automation team from the ground up, driving initiatives that eliminated tens of thousands of manual hours annually",
+        "Directed the Clinical Integration team through complex pharmacy system integrations, enabling in-house medication compounding capabilities",
+        "Conducted hundreds of technical interviews while maintaining a rigorous quality bar during rapid team growth",
+        "Established monthly backend engineering forums to foster cross-organizational alignment and technical excellence"
+      ],
+      "achievements": [
+        "Championed high-impact revenue initiatives including HRT and Bulk Ordering systems",
+        "Delivered automation solutions saving tens of thousands of manual hours per year"
+      ],
+      "technologies": ["GraphQL", "Node.js", "PostgreSQL", "GCP", "AWS", "Docker"]
+    },
+    {
+      "company": "HenryMeds",
+      "role": "Senior Software Engineer",
+      "duration": "08/2022 - 08/2023",
+      "location": "Remote",
+      "responsibilities": [
+        "Joined as the founding engineer, establishing technical architecture and scaling systems for hypergrowth",
+        "Architected and deployed the core medication processing platform, powering hundreds of thousands of prescriptions annually with full compliance",
+        "Built and managed GraphQL Hasura infrastructure with JWT-based authentication via Google Cloud IAP",
+        "Spearheaded complete customer journey overhaul, migrating from third-party tooling to in-house solution",
+        "Engineered backend services for end-to-end clinician workflows, from treatment eligibility through scheduling"
+      ],
+      "achievements": [
+        "Delivered $500K+ in annual savings through strategic platform migration",
+        "Established scalable foundation supporting company's rapid growth trajectory"
+      ],
+      "technologies": ["GraphQL", "Hasura", "Node.js", "PostgreSQL", "GCP", "JWT"]
+    },
+    {
+      "company": "Acxiom LLC",
+      "role": "Expert Solutions Developer",
+      "duration": "01/2011 - 08/2022",
+      "location": "Conway, AR",
+      "responsibilities": [
+        "Owned and scaled mission-critical real-time credit card offer APIs processing 5M+ daily transactions with >99.99% uptime",
+        "Orchestrated cloud migration of legacy on-premises APIs to AWS (API Gateway, ECS) using Jenkins and Terraform",
+        "Transformed .NET Core batch processing systems into event-driven architecture using Google Pub/Sub",
+        "Architected and maintained enterprise database schemas across Oracle, PostgreSQL, and SQL Server",
+        "Engineered secure PII exchange systems using advanced cryptography (hashing, JWE)",
+        "Built high-performance multithreaded Python pipelines for large-scale offline transaction processing",
+        "Developed custom Java gateway with end-to-end payload encryption for on-premises routing",
+        "Integrated with external platforms including TransUnion and internal tools like Retool",
+        "Mentored and onboarded engineers while conducting technical interviews"
+      ],
+      "achievements": [
+        "Achieved >99.99% uptime across 11+ years for APIs handling 5M+ daily transactions",
+        "Successfully modernized legacy infrastructure, improving scalability and reducing operational costs",
+        "Designed enterprise-scale SharePoint access management system serving hundreds of users"
+      ],
+      "technologies": [".NET Core", "Java", "Python", "AWS", "GCP", "Oracle", "PostgreSQL", "SQL Server", "Terraform", "Jenkins", "Docker"]
+    },
+    {
+      "company": "Modulus Co LLC",
+      "role": "Co-Founder / Developer / Instructor",
+      "duration": "04/2021 - 04/2022",
+      "location": "Little Rock, AR",
+      "responsibilities": [
+        "Designed and delivered comprehensive Unreal Engine curriculum covering AI behavior trees, animation blueprints, and game architecture",
+        "Architected and managed AWS-hosted Perforce repository for team collaboration and version control",
+        "Built production-ready demo projects in Unreal Engine for marketing and client presentations",
+        "Developed reusable C++ function libraries to accelerate development workflows"
+      ],
+      "achievements": [
+        "Created complete game development curriculum from concept through implementation",
+        "Established robust source control infrastructure supporting distributed team collaboration"
+      ],
+      "technologies": ["C++", "Unreal Engine", "AWS", "Perforce"]
+    }
+  ],
+  "skills": {
+    "languages": ["JavaScript", "Python", "Java", "C#", ".NET"],
+    "frontend": ["React", "Next.js", "GraphQL"],
+    "backend": ["Node.js", "Express.js", ".NET Core", "JBoss", "WildFly"],
+    "databases": ["PostgreSQL", "Oracle", "SQL Server", "NoSQL"],
+    "cloud": ["AWS", "GCP", "Docker", "Terraform", "Jenkins"],
+    "tools": ["Git", "CI/CD", "DevOps", "REST", "SOAP", "GraphQL", "Hasura"],
+    "other": ["ChatGPT", "Claude", "AI Tools", "Agile", "OOP"]
+  },
+  "education": [
+    {
+      "degree": "Master of Science in Computer Science",
+      "school": "University of Arkansas at Little Rock",
+      "location": "Little Rock, AR",
+      "year": "2019"
+    },
+    {
+      "degree": "Bachelor of Science in Computer Science",
+      "school": "University of Central Arkansas",
+      "location": "Conway, AR",
+      "year": "2011"
+    }
+  ]
+}
+
