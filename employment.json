@@ -1,8 +1,8 @@
 {
   "intro": "Hello there! I'm an AI version of Michael Miller, here to answer questions about my professional experience and more. Here's my background:",
   "name": "Michael Miller",
-  "title": "Engineering Manager & Lead Software Engineer",
-  "summary": "Engineering leader and software engineer with 14+ years of experience building scalable systems and high-performing teams. Expert in full-stack development, cloud architecture, and process automation. Proven track record of delivering high-impact solutions in fast-paced, high-growth environments—from startup foundations to enterprise-scale systems.",
+  "title": "Lead Software Engineer",
+  "summary": "Engineering leader and software engineer with 15+ years of experience building scalable systems and high-performing teams. Expert in full-stack development, cloud architecture, and process automation. Proven track record of delivering high-impact solutions in fast-paced, high-growth environments—from startup foundations to enterprise-scale systems.",
   "avatar": "/avatar.png",
   "contact": {
     "email": "mmiller3.ar@gmail.com",
@@ -11,80 +11,62 @@
   },
   "employment": [
     {
-      "company": "HenryMeds",
-      "role": "Engineering Manager",
-      "duration": "08/2023 - Present",
+      "company": "Mavis Meds",
+      "role": "Co-Founder / Developer",
+      "duration": "05/2024 - 10/2025",
       "location": "Remote",
       "responsibilities": [
-        "Led multiple engineering teams within Internal Applications, delivering enterprise systems that power operational workflows",
-        "Built and scaled the Process Automation team from the ground up, driving initiatives that eliminated tens of thousands of manual hours annually",
-        "Directed the Clinical Integration team through complex pharmacy system integrations, enabling in-house medication compounding capabilities",
-        "Conducted hundreds of technical interviews while maintaining a rigorous quality bar during rapid team growth",
-        "Established monthly backend engineering forums to foster cross-organizational alignment and technical excellence"
+        "Designed and built the end-to-end telemedicine platform, including sign-up, scheduling, prescription processing, and follow-up workflows, using React, Node.js/Fastify, Hasura, and PostgreSQL",
+        "Deployed and operated the company's GraphQL (Hasura) infrastructure, implementing secure authentication using JWTs and Google Cloud IAP",
+        "Deployed applications to GCP Cloud Run containers, ensuring scalable, resilient, and secure cloud infrastructure",
+        "Monitored system performance and optimized database scaling, reducing costs while maintaining responsiveness and uptime",
+        "Owned platform maintenance and support, resolving bugs and production issues to ensure a seamless patient and clinician experience",
+        "Streamlined workflows from sign-up to prescription fulfillment, improving patient conversion and retention"
       ],
       "achievements": [
-        "Championed high-impact revenue initiatives including HRT and Bulk Ordering systems",
-        "Delivered automation solutions saving tens of thousands of manual hours per year"
+        "Built complete telemedicine platform from scratch, serving patients and clinicians across multiple states",
+        "Delivered secure, compliant, and scalable healthcare infrastructure on GCP"
       ],
-      "technologies": ["GraphQL", "Node.js", "PostgreSQL", "GCP", "AWS", "Docker"]
-    },
-    {
-      "company": "HenryMeds",
-      "role": "Senior Software Engineer",
-      "duration": "08/2022 - 08/2023",
-      "location": "Remote",
-      "responsibilities": [
-        "Joined as the founding engineer, establishing technical architecture and scaling systems for hypergrowth",
-        "Architected and deployed the core medication processing platform, powering hundreds of thousands of prescriptions annually with full compliance",
-        "Built and managed GraphQL Hasura infrastructure with JWT-based authentication via Google Cloud IAP",
-        "Spearheaded complete customer journey overhaul, migrating from third-party tooling to in-house solution",
-        "Engineered backend services for end-to-end clinician workflows, from treatment eligibility through scheduling"
-      ],
-      "achievements": [
-        "Delivered $500K+ in annual savings through strategic platform migration",
-        "Established scalable foundation supporting company's rapid growth trajectory"
-      ],
-      "technologies": ["GraphQL", "Hasura", "Node.js", "PostgreSQL", "GCP", "JWT"]
-    },
-    {
-      "company": "Acxiom LLC",
-      "role": "Expert Solutions Developer",
-      "duration": "01/2011 - 08/2022",
-      "location": "Conway, AR",
-      "responsibilities": [
-        "Owned and scaled mission-critical real-time credit card offer APIs processing 5M+ daily transactions with >99.99% uptime",
-        "Orchestrated cloud migration of legacy on-premises APIs to AWS (API Gateway, ECS) using Jenkins and Terraform",
-        "Transformed .NET Core batch processing systems into event-driven architecture using Google Pub/Sub",
-        "Architected and maintained enterprise database schemas across Oracle, PostgreSQL, and SQL Server",
-        "Engineered secure PII exchange systems using advanced cryptography (hashing, JWE)",
-        "Built high-performance multithreaded Python pipelines for large-scale offline transaction processing",
-        "Developed custom Java gateway with end-to-end payload encryption for on-premises routing",
-        "Integrated with external platforms including TransUnion and internal tools like Retool",
-        "Mentored and onboarded engineers while conducting technical interviews"
-      ],
-      "achievements": [
-        "Achieved >99.99% uptime across 11+ years for APIs handling 5M+ daily transactions",
-        "Successfully modernized legacy infrastructure, improving scalability and reducing operational costs",
-        "Designed enterprise-scale SharePoint access management system serving hundreds of users"
-      ],
-      "technologies": [".NET Core", "Java", "Python", "AWS", "GCP", "Oracle", "PostgreSQL", "SQL Server", "Terraform", "Jenkins", "Docker"]
+      "technologies": ["React", "Node.js", "Fastify", "Hasura", "PostgreSQL", "GCP", "Cloud Run", "JWT"]
     },
     {
       "company": "Modulus Co LLC",
       "role": "Co-Founder / Developer / Instructor",
-      "duration": "04/2021 - 04/2022",
+      "duration": "04/2021 - 05/2022",
       "location": "Little Rock, AR",
       "responsibilities": [
-        "Designed and delivered comprehensive Unreal Engine curriculum covering AI behavior trees, animation blueprints, and game architecture",
-        "Architected and managed AWS-hosted Perforce repository for team collaboration and version control",
-        "Built production-ready demo projects in Unreal Engine for marketing and client presentations",
-        "Developed reusable C++ function libraries to accelerate development workflows"
+        "Co-founded a technical education and development studio focused on Unreal Engine and real-time systems",
+        "Designed and taught curriculum covering AI behavior trees, state machines, and systems architecture",
+        "Built reusable C++ libraries and demo projects, emphasizing performance, modularity, and maintainability"
       ],
       "achievements": [
         "Created complete game development curriculum from concept through implementation",
-        "Established robust source control infrastructure supporting distributed team collaboration"
+        "Established technical education company teaching advanced Unreal Engine concepts"
       ],
-      "technologies": ["C++", "Unreal Engine", "AWS", "Perforce"]
+      "technologies": ["C++", "Unreal Engine", "AI Behavior Trees", "State Machines"]
+    },
+    {
+      "company": "Acxiom LLC",
+      "role": "Expert Solutions Developer",
+      "duration": "01/2011 - Present",
+      "location": "Conway, AR",
+      "responsibilities": [
+        "Owned and scaled real-time credit card offer APIs processing 5M+ daily transactions with >99.99% uptime",
+        "Led migration of legacy on-prem services to AWS (API Gateway, ECS) using Terraform and Jenkins, improving scalability, reliability, and deployment velocity",
+        "Designed and maintained cross-team database schemas across Oracle, PostgreSQL, and SQL Server, ensuring data integrity and performance at scale",
+        "Built secure data exchange tooling using hashing algorithms and JSON Web Encryption (JWE) to protect PII across distributed systems",
+        "Developed multithreaded Python pipelines to process high-volume offline transactions, shifting workloads to off-peak hours and reducing system load",
+        "Integrated with external platforms (e.g., TransUnion) and internal tooling (e.g., Retool) via robust .NET Core APIs",
+        "Led the design and implementation of a custom rules engine for automated marketing lead risk assessment",
+        "Designed and implemented a SharePoint-based access management system, streamlining permissions for hundreds of users across UNIX, Oracle, and SharePoint",
+        "Interviewed, onboarded, and mentored engineers, contributing to long-term team growth and technical excellence"
+      ],
+      "achievements": [
+        "Achieved >99.99% uptime across 15+ years for APIs handling 5M+ daily transactions",
+        "Successfully modernized legacy infrastructure to AWS, improving scalability and reducing operational costs",
+        "Designed enterprise-scale access management system serving hundreds of users"
+      ],
+      "technologies": [".NET Core", "Python", "AWS", "API Gateway", "ECS", "Terraform", "Jenkins", "Oracle", "PostgreSQL", "SQL Server", "TransUnion", "Retool"]
     }
   ],
   "skills": {
@@ -119,7 +101,6 @@
     },
     "career_goals": "Continue growing as an engineering leader, building high-performing teams and scalable systems",
     "fun_facts": [
-      "Started as first engineer at HenryMeds and helped scale it significantly",
       "Co-founded a game development education company",
       "Holds both Bachelor's and Master's degrees in Computer Science",
       "Favorite food is the Beef Dino Rib from Terry Black's BBQ in Dallas, Texas",
@@ -137,7 +118,7 @@
       "Bernard Chen, Michael Miller, Matthew Erby, Bradley Taylor \"Mining Distance Association Rules from Protein Sequence Motifs\", The 6th International Conference on Bioinformatics and Biomedical Engineering (iCBBE 2012), Shanghai, China, Proceeding Vol.2 pp.398~401.",
       "Bernard Chen, Michael Miller, Timothy Montgomery, Terrance Griffin, \"Clustering Using Positional Association Rules Algorithm on Protein Sequence Motifs\", International Conference on Bioinformatics & Computational Biology (BIOCOMP2010), Las Vegas, USA, pp.75~80.  (Regular Research Paper (RRP) Acceptance Rate: ~27%)"
     ],
-    "additional_notes": "My favorite project is the medication processing platform at HenryMeds.  It is still in use today and is a testament to the quality of the work I did there. I enjoy Game development with Unreal engine."
+    "additional_notes": "My favorite project is the medication processing platform at Mavis Meds. I enjoy Game development with Unreal engine.."
   }
 }
 
