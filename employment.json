@@ -11,6 +11,29 @@
   },
   "employment": [
     {
+      "company": "Acxiom LLC",
+      "role": "Expert Solutions Developer",
+      "duration": "01/2011 - Present",
+      "location": "Conway, AR",
+      "responsibilities": [
+        "Owned and scaled real-time credit card offer APIs processing 5M+ daily transactions with >99.99% uptime",
+        "Led migration of legacy on-prem services to AWS (API Gateway, ECS) using Terraform and Jenkins, improving scalability, reliability, and deployment velocity",
+        "Designed and maintained cross-team database schemas across Oracle, PostgreSQL, and SQL Server, ensuring data integrity and performance at scale",
+        "Built secure data exchange tooling using hashing algorithms and JSON Web Encryption (JWE) to protect PII across distributed systems",
+        "Developed multithreaded Python pipelines to process high-volume offline transactions, shifting workloads to off-peak hours and reducing system load",
+        "Integrated with external platforms (e.g., TransUnion) and internal tooling (e.g., Retool) via robust .NET Core APIs",
+        "Led the design and implementation of a custom rules engine for automated marketing lead risk assessment",
+        "Designed and implemented a SharePoint-based access management system, streamlining permissions for hundreds of users across UNIX, Oracle, and SharePoint",
+        "Interviewed, onboarded, and mentored engineers, contributing to long-term team growth and technical excellence"
+      ],
+      "achievements": [
+        "Achieved >99.99% uptime across 15+ years for APIs handling 5M+ daily transactions",
+        "Successfully modernized legacy infrastructure to AWS, improving scalability and reducing operational costs",
+        "Designed enterprise-scale access management system serving hundreds of users"
+      ],
+      "technologies": [".NET Core", "Python", "AWS", "API Gateway", "ECS", "Terraform", "Jenkins", "Oracle", "PostgreSQL", "SQL Server", "TransUnion", "Retool"]
+    },
+    {
       "company": "Mavis Meds",
       "role": "Co-Founder / Developer",
       "duration": "05/2024 - 10/2025",
@@ -44,29 +67,6 @@
         "Established technical education company teaching advanced Unreal Engine concepts"
       ],
       "technologies": ["C++", "Unreal Engine", "AI Behavior Trees", "State Machines"]
-    },
-    {
-      "company": "Acxiom LLC",
-      "role": "Expert Solutions Developer",
-      "duration": "01/2011 - Present",
-      "location": "Conway, AR",
-      "responsibilities": [
-        "Owned and scaled real-time credit card offer APIs processing 5M+ daily transactions with >99.99% uptime",
-        "Led migration of legacy on-prem services to AWS (API Gateway, ECS) using Terraform and Jenkins, improving scalability, reliability, and deployment velocity",
-        "Designed and maintained cross-team database schemas across Oracle, PostgreSQL, and SQL Server, ensuring data integrity and performance at scale",
-        "Built secure data exchange tooling using hashing algorithms and JSON Web Encryption (JWE) to protect PII across distributed systems",
-        "Developed multithreaded Python pipelines to process high-volume offline transactions, shifting workloads to off-peak hours and reducing system load",
-        "Integrated with external platforms (e.g., TransUnion) and internal tooling (e.g., Retool) via robust .NET Core APIs",
-        "Led the design and implementation of a custom rules engine for automated marketing lead risk assessment",
-        "Designed and implemented a SharePoint-based access management system, streamlining permissions for hundreds of users across UNIX, Oracle, and SharePoint",
-        "Interviewed, onboarded, and mentored engineers, contributing to long-term team growth and technical excellence"
-      ],
-      "achievements": [
-        "Achieved >99.99% uptime across 15+ years for APIs handling 5M+ daily transactions",
-        "Successfully modernized legacy infrastructure to AWS, improving scalability and reducing operational costs",
-        "Designed enterprise-scale access management system serving hundreds of users"
-      ],
-      "technologies": [".NET Core", "Python", "AWS", "API Gateway", "ECS", "Terraform", "Jenkins", "Oracle", "PostgreSQL", "SQL Server", "TransUnion", "Retool"]
     }
   ],
   "skills": {
