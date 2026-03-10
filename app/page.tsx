@@ -406,7 +406,7 @@ export default function Home() {
             </svg>
           </a>
           <a 
-            href="/resume.pdf"
+            href="/michael_miller_resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-gray-200 transition-colors"

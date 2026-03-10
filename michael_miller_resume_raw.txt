@@ -1,0 +1,65 @@
+Michael Miller
+Little Rock, AR
+mmiller3.ar@gmail.com
+(501) 499-2411
+
+Summary
+Lead Software Engineer and Technical Leader with 15+ Years of Experience Delivering End-to-End Cloud Solutions
+
+Experience
+
+08/2023 - Present
+HenryMeds
+Engineering Manager • Remote
+Conducted and led hundreds of technical interviews, scaling engineering headcount while maintaining a high technical bar.
+Directed multiple teams within the Internal Applications organization, overseeing delivery of mission-critical enterprise systems.
+Founded and scaled the Process Automation team, eliminating tens of thousands of manual hours annually through workflow automation and system integration.
+Led delivery of high-impact initiatives including HRT and Bulk Ordering, enabling new revenue streams and significant operational efficiencies.
+Oversaw the Clinical Integration team, delivering pharmacy and clinical system integrations that enabled in-house medication compounding.
+Established and facilitated a monthly backend engineering forum, improving cross-team alignment, architectural consistency, and shared ownership of technical standards.
+
+08/2022
+HenryMeds
+Senior Software Engineer • Remote
+Joined as the first engineer, establishing core architecture and scaling systems to support one of the fastest-growing startups in the U.S.
+Designed and implemented the medication processing platform, supporting hundreds of thousands of prescriptions annually with strict accuracy and compliance requirements.
+Deployed and operated the company’s GraphQL (Hasura) infrastructure, implementing secure authentication using JWTs and Google Cloud IAP.
+Led a full overhaul of the customer journey, migrating off a third-party sales platform and saving ~$500K annually.
+Built backend services supporting clinician management workflows, from eligibility and prescribing to scheduling and fulfillment.
+
+04/2021
+Modulus Co LLC
+Co-Founder / Developer / Instructor • Little Rock, AR
+Co-founded a technical education and development studio focused on Unreal Engine and real-time systems.
+Designed and taught curriculum covering AI behavior trees, state machines, and systems architecture.
+Built reusable C++ libraries and demo projects, emphasizing performance, modularity, and maintainability.
+
+01/2011
+Acxiom LLC
+Expert Solutions Developer • Conway, AR
+Owned and scaled real-time credit card offer APIs processing 5M+ daily transactions with >99.99% uptime.
+Led migration of legacy on-prem services to AWS (API Gateway, ECS) using Terraform and Jenkins, improving scalability, reliability, and deployment velocity.
+Designed and maintained cross team database schemas across Oracle, PostgreSQL, and SQL Server, ensuring data integrity and performance at scale.
+Built secure data exchange tooling using hashing algorithms and JSON Web Encryption (JWE) to protect PII across distributed systems.
+Developed multithreaded Python pipelines to process high-volume offline transactions, shifting workloads to off-peak hours and reducing system load.
+Integrated with external platforms (e.g., TransUnion) and internal tooling (e.g., Retool) via robust .NET Core APIs.
+Led the design and implementation of a custom rules engine for automated marketing lead risk assessment.
+Designed and implemented a SharePoint-based access management system, streamlining permissions for hundreds of users across UNIX, Oracle, and SharePoint.
+Interviewed, onboarded, and mentored engineers, contributing to long-term team growth and technical excellence.
+
+Education
+
+05/2019
+University of Arkansas at Little Rock
+M.S., Computer Science • Little Rock
+
+12/2011
+University of Central Arkansas
+B.S., Computer Science • Conway
+
+Links
+michaelalanmiller.dev
+https://michaelalanmiller.dev/
+
+Skills
+Javascript, Typescript, Python, C#, Node.js, GraphQL, .NET, GCP, AWS, PostgreSQL, SQL Server, Oracle, Hasura, Docker, Terraform, Jenkins, System Design, Event-Driven Architecture
