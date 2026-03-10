@@ -7,7 +7,135 @@ interface Message {
   content: string
 }
 
+// Simple in-memory rate limiting (resets on server restart)
+// For production, consider using Redis or a database
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
+
+// Rate limit configuration
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000 // 1 hour
+const MAX_REQUESTS_PER_WINDOW = 20 // 20 requests per hour per IP
+
+// Allowed origins for CORS and referrer checking
+const ALLOWED_ORIGINS = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://michaelalanmiller.dev',
+  'https://www.michaelalanmiller.dev',
+]
+
+function checkRateLimit(identifier: string): { allowed: boolean; remaining: number; resetTime: number } {
+  const now = Date.now()
+  const record = rateLimitMap.get(identifier)
+
+  // Clean up old entries periodically
+  if (rateLimitMap.size > 1000) {
+    const cutoff = now - RATE_LIMIT_WINDOW_MS
+    for (const [key, value] of rateLimitMap.entries()) {
+      if (value.resetTime < cutoff) {
+        rateLimitMap.delete(key)
+      }
+    }
+  }
+
+  if (!record || now > record.resetTime) {
+    // Create new rate limit window
+    rateLimitMap.set(identifier, {
+      count: 1,
+      resetTime: now + RATE_LIMIT_WINDOW_MS,
+    })
+    return {
+      allowed: true,
+      remaining: MAX_REQUESTS_PER_WINDOW - 1,
+      resetTime: now + RATE_LIMIT_WINDOW_MS,
+    }
+  }
+
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return {
+      allowed: false,
+      remaining: 0,
+      resetTime: record.resetTime,
+    }
+  }
+
+  record.count++
+  return {
+    allowed: true,
+    remaining: MAX_REQUESTS_PER_WINDOW - record.count,
+    resetTime: record.resetTime,
+  }
+}
+
+function isOriginAllowed(origin: string | null): boolean {
+  if (!origin) return false
+  return ALLOWED_ORIGINS.some(allowed => origin.startsWith(allowed))
+}
+
+function getCorsHeaders(origin: string | null) {
+  const allowedOrigin = isOriginAllowed(origin) ? origin : ALLOWED_ORIGINS[0]
+  
+  return {
+    'Access-Control-Allow-Origin': allowedOrigin,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Max-Age': '86400', // 24 hours
+  }
+}
+
+// Handle OPTIONS request for CORS preflight
+export async function OPTIONS(req: NextRequest) {
+  const origin = req.headers.get('origin')
+  
+  if (!isOriginAllowed(origin)) {
+    return new NextResponse(null, { status: 403 })
+  }
+
+  return new NextResponse(null, {
+    status: 200,
+    headers: getCorsHeaders(origin),
+  })
+}
+
 export async function POST(req: NextRequest) {
+  const origin = req.headers.get('origin')
+  const referer = req.headers.get('referer')
+  
+  // 1. Check CORS / Referrer
+  if (!isOriginAllowed(origin) && !isOriginAllowed(referer)) {
+    return NextResponse.json(
+      { error: 'Unauthorized origin' },
+      { 
+        status: 403,
+        headers: getCorsHeaders(origin),
+      }
+    )
+  }
+
+  // 2. Check rate limit
+  const ip = req.ip ?? req.headers.get('x-forwarded-for') ?? req.headers.get('x-real-ip') ?? 'anonymous'
+  const rateLimit = checkRateLimit(ip)
+
+  if (!rateLimit.allowed) {
+    const waitMinutes = Math.ceil((rateLimit.resetTime - Date.now()) / 60000)
+    return NextResponse.json(
+      { 
+        error: 'Rate limit exceeded',
+        message: `Too many requests. Please try again in ${waitMinutes} minute${waitMinutes > 1 ? 's' : ''}.`,
+        retryAfter: Math.ceil((rateLimit.resetTime - Date.now()) / 1000),
+      },
+      { 
+        status: 429,
+        headers: {
+          ...getCorsHeaders(origin),
+          'X-RateLimit-Limit': MAX_REQUESTS_PER_WINDOW.toString(),
+          'X-RateLimit-Remaining': '0',
+          'X-RateLimit-Reset': rateLimit.resetTime.toString(),
+          'Retry-After': Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
+        },
+      }
+    )
+  }
+
   try {
     // Initialize Anthropic client only when needed
     if (!process.env.ANTHROPIC_API_KEY) {
@@ -61,7 +189,7 @@ Remember: You ARE Michael Miller. Speak in first person. Be helpful and conversa
         try {
           // Call Anthropic API with streaming
           const streamResponse = await anthropic.messages.create({
-            model: 'claude-3-5-haiku-20241022', // Fast and cost-effective
+            model: 'claude-haiku-4-5-20251001', // Fast and cost-effective
             max_tokens: 800, // Increased to allow complete responses
             temperature: 0.7, // Balanced creativity
             system: systemPrompt,
@@ -101,9 +229,13 @@ Remember: You ARE Michael Miller. Speak in first person. Be helpful and conversa
 
     return new Response(stream, {
       headers: {
+        ...getCorsHeaders(origin),
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
         'Connection': 'keep-alive',
+        'X-RateLimit-Limit': MAX_REQUESTS_PER_WINDOW.toString(),
+        'X-RateLimit-Remaining': rateLimit.remaining.toString(),
+        'X-RateLimit-Reset': rateLimit.resetTime.toString(),
       },
     })
   } catch (error: any) {
@@ -144,14 +276,20 @@ Remember: You ARE Michael Miller. Speak in first person. Be helpful and conversa
       
       return NextResponse.json(
         { message: retryMessage },
-        { status: 200 }
+        { 
+          status: 200,
+          headers: getCorsHeaders(origin),
+        }
       )
     }
     
     // Generic error handling
     return NextResponse.json(
       { error: 'Failed to get response from AI' },
-      { status: 500 }
+      { 
+        status: 500,
+        headers: getCorsHeaders(origin),
+      }
     )
   }
 }
