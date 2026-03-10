@@ -71,8 +71,8 @@ function isOriginAllowed(origin: string | null): boolean {
   return ALLOWED_ORIGINS.some(allowed => origin.startsWith(allowed))
 }
 
-function getCorsHeaders(origin: string | null) {
-  const allowedOrigin = isOriginAllowed(origin) ? origin : ALLOWED_ORIGINS[0]
+function getCorsHeaders(origin: string | null): Record<string, string> {
+  const allowedOrigin = (isOriginAllowed(origin) ? origin : ALLOWED_ORIGINS[0]) || ALLOWED_ORIGINS[0]
   
   return {
     'Access-Control-Allow-Origin': allowedOrigin,
@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
   }
 
   // 2. Check rate limit
-  const ip = req.ip ?? req.headers.get('x-forwarded-for') ?? req.headers.get('x-real-ip') ?? 'anonymous'
+  const ip = (req as any).ip ?? req.headers.get('x-forwarded-for') ?? req.headers.get('x-real-ip') ?? 'anonymous'
   const rateLimit = checkRateLimit(ip)
 
   if (!rateLimit.allowed) {

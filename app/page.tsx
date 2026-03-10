@@ -91,7 +91,7 @@ export default function Home() {
             role: 'assistant',
             content: initialMessage,
             isTyping: true,
-            speed: 1 
+            speed: 30 // Speed in ms per line (faster for line-by-line)
           }
         ])
         setIsRestoringSession(false)
@@ -105,7 +105,7 @@ export default function Home() {
           role: 'assistant',
           content: initialMessage,
           isTyping: true,
-          speed: 1 
+          speed: 30 // Speed in ms per line (faster for line-by-line)
         }
       ])
       setIsRestoringSession(false)
@@ -153,7 +153,7 @@ export default function Home() {
           role: 'assistant',
           content: initialMessage,
           isTyping: true,
-          speed: 1
+          speed: 30
         }
       ])
       setInitialTypingComplete(false)

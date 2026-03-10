@@ -19,20 +19,24 @@ export default function TypewriterText({
   isUser = false
 }: TypewriterTextProps) {
   const [displayedText, setDisplayedText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentLineIndex, setCurrentLineIndex] = useState(0)
+  
+  // Split text into lines for line-by-line animation
+  const lines = text.split('\n')
 
   useEffect(() => {
-    if (isTyping && currentIndex < text.length) {
+    if (isTyping && currentLineIndex < lines.length) {
       const timeout = setTimeout(() => {
-        setDisplayedText(prev => prev + text[currentIndex])
-        setCurrentIndex(prev => prev + 1)
+        setCurrentLineIndex(prev => prev + 1)
+        // Update displayed text to include all lines up to current index
+        setDisplayedText(lines.slice(0, currentLineIndex + 1).join('\n'))
       }, speed)
 
       return () => clearTimeout(timeout)
-    } else if (onComplete && currentIndex === text.length && text.length > 0 && isTyping) {
+    } else if (onComplete && currentLineIndex === lines.length && lines.length > 0 && isTyping) {
       onComplete()
     }
-  }, [currentIndex, text, speed, onComplete, isTyping])
+  }, [currentLineIndex, lines, speed, onComplete, isTyping])
 
   // If not typing, show full text immediately
   const contentToShow = isTyping ? displayedText : text
